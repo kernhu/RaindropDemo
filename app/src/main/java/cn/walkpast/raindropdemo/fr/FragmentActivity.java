@@ -11,7 +11,7 @@ import android.support.v7.app.AppCompatActivity;
  * modify version name :
  * description: This's ...
  */
-public class SignupActivity extends AppCompatActivity {
+public class FragmentActivity extends AppCompatActivity {
 
 
 }

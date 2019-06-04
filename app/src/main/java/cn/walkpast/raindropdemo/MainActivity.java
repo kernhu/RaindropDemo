@@ -10,7 +10,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.walkpast.raindropdemo.ac.WeatherActivity;
-import cn.walkpast.raindropdemo.fr.SignupActivity;
+import cn.walkpast.raindropdemo.fr.FragmentActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.item_fr:
 
-                mIntent = new Intent(MainActivity.this, SignupActivity.class);
+                mIntent = new Intent(MainActivity.this, FragmentActivity.class);
                 startActivity(mIntent);
 
                 break;

@@ -22,7 +22,7 @@
 
         <activity android:name=".ac.WeatherActivity"></activity>
 
-        <activity android:name=".fr.SignupActivity"></activity>
+        <activity android:name=".fr.FragmentActivity"></activity>
     </application>
 
 </manifest>
