@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="cn.walkpast.raindropdemo.MainActivity">
+
+    <TextView
+        android:id="@+id/item_ac"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#636262"
+        android:gravity="center"
+        android:padding="10pt"
+        android:text="use raindrop in activity"
+        android:textColor="#ffffff" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#cdcdcd" />
+
+    <TextView
+        android:id="@+id/item_fr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#636262"
+        android:gravity="center"
+        android:padding="10pt"
+        android:text="use raindrop in fragment"
+        android:textColor="#ffffff" />
+
+</LinearLayout>
