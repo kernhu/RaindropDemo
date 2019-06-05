@@ -4,16 +4,19 @@ import android.text.TextUtils;
 
 import com.google.gson.GsonBuilder;
 
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import cn.walkpast.raindrop.Config;
 import cn.walkpast.raindrop.RaindropConfig;
-import cn.walkpast.raindrop.logging.LoggerInterceptor;
+import cn.walkpast.raindrop.cookie.NewCookieJar;
+import cn.walkpast.raindrop.interceptor.LoggerInterceptor;
+import cn.walkpast.raindrop.interceptor.NetWorkInterceptor;
 import cn.walkpast.raindrop.ssl.RaindropSSLSocketFactory;
 import cn.walkpast.raindrop.ssl.RaindropX509TrustManager;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Response;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -36,10 +39,9 @@ public class RaindropFactoryImpl implements RaindropFactory {
 
     public RaindropFactoryImpl(String hostUrl) {
 
-        if (!TextUtils.isEmpty(RaindropConfig.getInstance().getX509TrustFileName())) {
+        if (!TextUtils.isEmpty(RaindropConfig.getInstance().getSslCertificate())) {
             mHttpBuilder.sslSocketFactory(RaindropSSLSocketFactory.getSSLSocketFactory(), new RaindropX509TrustManager());
         }
-
         mRetrofitBuilder
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .baseUrl(hostUrl)
@@ -50,14 +52,16 @@ public class RaindropFactoryImpl implements RaindropFactory {
                 ))
                 .client(mHttpBuilder.addInterceptor(
                         new LoggerInterceptor()
-                                .setLogTag(RaindropConfig.getInstance().getLogTag())
-                                .setLevel(RaindropConfig.getInstance().getLevel())
-                                .setPrintable(RaindropConfig.getInstance().isPrintable())
+                                .setLogTag(Config.logTag)
+                                .setLevel(Config.logLevel)
+                                .setPrintable(Config.logPrintable)
                                 .build()
                         )
-                                .readTimeout(RaindropConfig.getInstance().getReadTimeout(), TimeUnit.SECONDS)
-                                .connectTimeout(RaindropConfig.getInstance().getConnectTimeout(), TimeUnit.SECONDS)
-                                .writeTimeout(RaindropConfig.getInstance().getWriteTimeout(), TimeUnit.SECONDS)
+                                .readTimeout(Config.readTimeout, TimeUnit.SECONDS)
+                                .connectTimeout(Config.connectTimeout, TimeUnit.SECONDS)
+                                .writeTimeout(Config.writeTimeout, TimeUnit.SECONDS)
+                                .addNetworkInterceptor(new NetWorkInterceptor())
+                                .cookieJar(new NewCookieJar())
                                 .build()
                 );
     }
@@ -65,7 +69,7 @@ public class RaindropFactoryImpl implements RaindropFactory {
     @Override
     public Retrofit getRetrofit() {
         synchronized (RaindropFactoryImpl.class) {
-            if (RaindropConfig.getInstance().isLockable()) {
+            if (Config.retrofitLockable) {
                 if (mRetrofit == null) {
                     mRetrofit = mRetrofitBuilder.build();
                 }

@@ -12,7 +12,7 @@ import com.google.gson.Gson;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import cn.walkpast.raindrop.ExceptionTags;
+import cn.walkpast.raindrop.common.ExceptionTags;
 import cn.walkpast.raindrop.base.RaindropActivity;
 import cn.walkpast.raindropdemo.R;
 import cn.walkpast.raindropdemo.common.ApiStatus;

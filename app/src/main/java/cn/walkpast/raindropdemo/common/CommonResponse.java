@@ -2,7 +2,7 @@ package cn.walkpast.raindropdemo.common;
 
 import com.google.gson.JsonElement;
 
-import cn.walkpast.raindrop.BaseResponse;
+import cn.walkpast.raindrop.common.BaseResponse;
 
 /**
  * @author: Kern Hu

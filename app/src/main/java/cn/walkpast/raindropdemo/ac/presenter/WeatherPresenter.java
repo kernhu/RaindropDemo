@@ -2,7 +2,7 @@ package cn.walkpast.raindropdemo.ac.presenter;
 
 import android.text.TextUtils;
 
-import cn.walkpast.raindrop.ExceptionTags;
+import cn.walkpast.raindrop.common.ExceptionTags;
 import cn.walkpast.raindrop.base.presenter.RaindropPresenterImpl;
 import cn.walkpast.raindrop.exception.ExceptionHelper;
 import cn.walkpast.raindropdemo.common.CommonResponse;

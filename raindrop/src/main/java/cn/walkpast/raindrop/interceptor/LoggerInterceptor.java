@@ -1,4 +1,4 @@
-package cn.walkpast.raindrop.logging;
+package cn.walkpast.raindrop.interceptor;
 
 import android.util.Log;
 
@@ -6,8 +6,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 
 /**
  * @author: Kern Hu
- * @emali:
- * create at: 2019/6/3 12:54.
+ * @emali: create at: 2019/6/3 12:54.
  * modify at: 2019/6/3 12:54.
  * develop version name :
  * modify version name :
@@ -18,15 +17,15 @@ public class LoggerInterceptor {
     /**
      * log tag
      */
-    private String logTag="raindrop_log";
+    private String logTag = "raindrop_log";
     /**
      * log level
      */
-    private  HttpLoggingInterceptor.Level level= HttpLoggingInterceptor.Level.BODY;
+    private HttpLoggingInterceptor.Level level = HttpLoggingInterceptor.Level.BODY;
     /**
      * whether print log or not
      */
-    private boolean printable=true;
+    private boolean printable = true;
 
     public String getLogTag() {
         return logTag;
@@ -37,7 +36,7 @@ public class LoggerInterceptor {
         return this;
     }
 
-    public  HttpLoggingInterceptor.Level getLevel() {
+    public HttpLoggingInterceptor.Level getLevel() {
         return level;
     }
 
@@ -55,12 +54,14 @@ public class LoggerInterceptor {
         return this;
     }
 
-   public HttpLoggingInterceptor build(){
-       return new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
-           @Override
-           public void log(String message) {
-               Log.i(getLogTag(),message);
-           }
-       }).setLevel(getLevel());
-   }
+    public HttpLoggingInterceptor build() {
+        return new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
+            @Override
+            public void log(String message) {
+                if (isPrintable()) {
+                    Log.i(getLogTag(), message);
+                }
+            }
+        }).setLevel(getLevel());
+    }
 }

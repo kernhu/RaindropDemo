@@ -1,4 +1,4 @@
-package cn.walkpast.raindrop;
+package cn.walkpast.raindrop.common;
 
 /**
  * @author: Kern Hu

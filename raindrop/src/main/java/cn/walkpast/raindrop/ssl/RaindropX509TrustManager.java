@@ -15,6 +15,7 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
+import cn.walkpast.raindrop.Config;
 import cn.walkpast.raindrop.RaindropConfig;
 
 /**
@@ -64,7 +65,7 @@ public class RaindropX509TrustManager implements X509TrustManager {
         String clientIssUser = "";
         try {
             CertificateFactory certificateFactory = CertificateFactory.getInstance("X.509");
-            InputStream inputStream = RaindropConfig.getInstance().getContext().getAssets().open(RaindropConfig.getInstance().getX509TrustFileName());
+            InputStream inputStream = RaindropConfig.getInstance().getContext().getAssets().open(Config.sslCertificate);
             X509Certificate clientCertificate = (X509Certificate) certificateFactory.generateCertificate(inputStream);
             clientEncoded = new BigInteger(1, clientCertificate.getPublicKey().getEncoded()).toString(16);
             clientSubject = clientCertificate.getSubjectDN().getName();

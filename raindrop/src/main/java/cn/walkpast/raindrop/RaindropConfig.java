@@ -37,7 +37,7 @@ public class RaindropConfig {
     /**
      *
      */
-    private String x509TrustFileName;
+    private String sslCertificate;
 
     /**
      * log tag
@@ -46,26 +46,22 @@ public class RaindropConfig {
     /**
      * log level
      */
-    private HttpLoggingInterceptor.Level level = HttpLoggingInterceptor.Level.BODY;
+    private HttpLoggingInterceptor.Level logLevel = HttpLoggingInterceptor.Level.BODY;
     /**
      * whether print log or not
      */
-    private boolean printable = true;
+    private boolean logPrintable = true;
 
     /**
      * whether retrofit is a singleton or not
      * when your host and host are consistent,please set true,if not please false;
      */
-    private boolean lockable = true;
+    private boolean retrofitLockable = true;
 
     /**
-     * the result code
+     * base url( host + port)
      */
-    private int apiCode;
-    /**
-     * the result message
-     */
-    private String apiMessage;
+    private String baseUrl;
 
     public static RaindropConfig getInstance() {
         if (mRaindropConfig == null) {
@@ -110,12 +106,12 @@ public class RaindropConfig {
         return this;
     }
 
-    public String getX509TrustFileName() {
-        return x509TrustFileName;
+    public String getSslCertificate() {
+        return sslCertificate;
     }
 
-    public RaindropConfig setX509TrustFileName(String x509TrustFileName) {
-        this.x509TrustFileName = x509TrustFileName;
+    public RaindropConfig setSslCertificate(String sslCertificate) {
+        this.sslCertificate = sslCertificate;
         return this;
     }
 
@@ -128,52 +124,53 @@ public class RaindropConfig {
         return this;
     }
 
-    public HttpLoggingInterceptor.Level getLevel() {
-        return level;
+    public HttpLoggingInterceptor.Level getLogLevel() {
+        return logLevel;
     }
 
-    public RaindropConfig setLevel(HttpLoggingInterceptor.Level level) {
-        this.level = level;
+    public RaindropConfig setLogLevel(HttpLoggingInterceptor.Level logLevel) {
+        this.logLevel = logLevel;
         return this;
     }
 
-    public boolean isPrintable() {
-        return printable;
+    public boolean isLogPrintable() {
+        return logPrintable;
     }
 
-    public RaindropConfig setPrintable(boolean printable) {
-        this.printable = printable;
+    public RaindropConfig setLogPrintable(boolean logPrintable) {
+        this.logPrintable = logPrintable;
         return this;
     }
 
-    public boolean isLockable() {
-        return lockable;
+    public boolean isRetrofitLockable() {
+        return retrofitLockable;
     }
 
-    public RaindropConfig setLockable(boolean lockable) {
-        this.lockable = lockable;
+    public RaindropConfig setRetrofitLockable(boolean retrofitLockable) {
+        this.retrofitLockable = retrofitLockable;
         return this;
     }
 
-    public int getApiCode() {
-        return apiCode;
+    public String getBaseUrl() {
+        return baseUrl;
     }
 
-    public RaindropConfig setApiCode(int apiCode) {
-        this.apiCode = apiCode;
-        return this;
-    }
-
-    public String getApiMessage() {
-        return apiMessage;
-    }
-
-    public RaindropConfig setApiMessage(String apiMessage) {
-        this.apiMessage = apiMessage;
+    public RaindropConfig setBaseUrl(String baseUrl) {
+        this.baseUrl = baseUrl;
         return this;
     }
 
     public void build() {
+
+        Config.connectTimeout = getConnectTimeout();
+        Config.readTimeout = getReadTimeout();
+        Config.writeTimeout = getWriteTimeout();
+        Config.baseUrl = getBaseUrl();
+        Config.logLevel = getLogLevel();
+        Config.logPrintable = isLogPrintable();
+        Config.logTag = getLogTag();
+        Config.retrofitLockable = isRetrofitLockable();
+        Config.sslCertificate = getSslCertificate();
 
         Log.i("raindrop", "------------------------------------------------------------");
         Log.i("raindrop", "----------------- raindrop config success ------------------");

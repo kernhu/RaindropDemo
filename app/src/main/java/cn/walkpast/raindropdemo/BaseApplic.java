@@ -22,10 +22,14 @@ public class BaseApplic extends Application {
         RaindropConfig
                 .getInstance()
                 .setContext(this)
+                .setConnectTimeout(12)
+                .setReadTimeout(12)
+                .setWriteTimeout(12)
                 .setLogTag("raindrop-dome-sos")
-                .setLevel(HttpLoggingInterceptor.Level.BODY)
-                .setPrintable(BuildConfig.DEBUG)
-                .setLockable(true)
+                .setLogLevel(HttpLoggingInterceptor.Level.BODY)
+                .setLogPrintable(BuildConfig.DEBUG)
+                .setRetrofitLockable(true)
+                .setBaseUrl("")
                 .build();
     }
 }
