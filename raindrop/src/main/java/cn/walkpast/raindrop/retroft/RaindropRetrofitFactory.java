@@ -4,7 +4,6 @@ import android.text.TextUtils;
 
 import com.google.gson.GsonBuilder;
 
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import cn.walkpast.raindrop.Config;
@@ -16,7 +15,6 @@ import cn.walkpast.raindrop.ssl.RaindropSSLSocketFactory;
 import cn.walkpast.raindrop.ssl.RaindropX509TrustManager;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
-import okhttp3.Response;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -31,13 +29,13 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
  * modify version name :
  * description: This's ...
  */
-public class RaindropFactoryImpl implements RaindropFactory {
+public class RaindropRetrofitFactory implements IRetrofitFactory {
 
     private volatile static Retrofit mRetrofit = null;
     protected Retrofit.Builder mRetrofitBuilder = new Retrofit.Builder();
     protected OkHttpClient.Builder mHttpBuilder = new OkHttpClient.Builder();
 
-    public RaindropFactoryImpl(String hostUrl) {
+    public RaindropRetrofitFactory(String hostUrl) {
 
         if (!TextUtils.isEmpty(RaindropConfig.getInstance().getSslCertificate())) {
             mHttpBuilder.sslSocketFactory(RaindropSSLSocketFactory.getSSLSocketFactory(), new RaindropX509TrustManager());
@@ -62,13 +60,14 @@ public class RaindropFactoryImpl implements RaindropFactory {
                                 .writeTimeout(Config.writeTimeout, TimeUnit.SECONDS)
                                 .addNetworkInterceptor(new NetWorkInterceptor())
                                 .cookieJar(new NewCookieJar())
+                                .retryOnConnectionFailure(Config.retryOnConnectionFailure)
                                 .build()
                 );
     }
 
     @Override
     public Retrofit getRetrofit() {
-        synchronized (RaindropFactoryImpl.class) {
+        synchronized (RaindropRetrofitFactory.class) {
             if (Config.retrofitLockable) {
                 if (mRetrofit == null) {
                     mRetrofit = mRetrofitBuilder.build();

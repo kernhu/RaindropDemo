@@ -4,7 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import cn.walkpast.raindrop.base.presenter.RaindropPresenter;
+import cn.walkpast.raindrop.base.presenter.IRaindropPresenter;
 import cn.walkpast.raindrop.base.view.RaindropView;
 import cn.walkpast.raindrop.tools.ActivityHelper;
 
@@ -17,7 +17,7 @@ import cn.walkpast.raindrop.tools.ActivityHelper;
  * modify version name :
  * description: This's ...
  */
-public abstract class RaindropActivity<P extends RaindropPresenter> extends AppCompatActivity implements RaindropView {
+public abstract class RaindropActivity<P extends IRaindropPresenter> extends AppCompatActivity implements RaindropView {
 
     protected P presenter;
     public Context context;

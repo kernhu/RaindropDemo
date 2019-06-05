@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
-import cn.walkpast.raindrop.base.presenter.RaindropPresenter;
+import cn.walkpast.raindrop.base.presenter.IRaindropPresenter;
 import cn.walkpast.raindrop.base.view.RaindropView;
 
 /**
@@ -17,7 +17,7 @@ import cn.walkpast.raindrop.base.view.RaindropView;
  * modify version name :
  * description: This's ...
  */
-public abstract class RaindropFragment  <P extends RaindropPresenter> extends Fragment implements RaindropView {
+public abstract class RaindropFragment  <P extends IRaindropPresenter> extends Fragment implements RaindropView {
 
     protected P presenter;
     private boolean isViewCreate = false;

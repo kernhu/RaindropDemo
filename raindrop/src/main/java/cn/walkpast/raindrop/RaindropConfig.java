@@ -35,9 +35,9 @@ public class RaindropConfig {
     private long writeTimeout = 10;
 
     /**
-     *
+     * retry on connection when request failure
      */
-    private String sslCertificate;
+    public boolean retryOnConnectionFailure = true;
 
     /**
      * log tag
@@ -51,6 +51,11 @@ public class RaindropConfig {
      * whether print log or not
      */
     private boolean logPrintable = true;
+
+    /**
+     *
+     */
+    private String sslCertificate;
 
     /**
      * whether retrofit is a singleton or not
@@ -103,6 +108,15 @@ public class RaindropConfig {
 
     public RaindropConfig setWriteTimeout(long writeTimeout) {
         this.writeTimeout = writeTimeout;
+        return this;
+    }
+
+    public boolean isRetryOnConnectionFailure() {
+        return retryOnConnectionFailure;
+    }
+
+    public RaindropConfig setRetryOnConnectionFailure(boolean retryOnConnectionFailure) {
+        this.retryOnConnectionFailure = retryOnConnectionFailure;
         return this;
     }
 

@@ -1,24 +1,52 @@
 package cn.walkpast.raindrop.base.presenter;
 
+import cn.walkpast.raindrop.base.view.RaindropView;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
 /**
  * @author: Kern Hu
  * @emali:
- * create at: 2019/6/3 14:11.
- * modify at: 2019/6/3 14:11.
+ * create at: 2019/6/3 14:14.
+ * modify at: 2019/6/3 14:14.
  * develop version name :
  * modify version name :
  * description: This's ...
  */
-public interface RaindropPresenter {
+public abstract class RaindropPresenter<V extends RaindropView> implements IRaindropPresenter {
 
-    void start();
+    protected V view;
+    private CompositeDisposable mCompositeDisposable;
 
-    void detach();
+    public RaindropPresenter(V view) {
+        this.view = view;
+        start();
+    }
 
-    void addDisposable(Disposable subscription);
+    @Override
+    public void detach() {
+        this.view = null;
+        unDisposable();
+    }
 
-    void unDisposable();
+    @Override
+    public void start() {
+
+    }
+
+    @Override
+    public void addDisposable(Disposable subscription) {
+        if (mCompositeDisposable == null || mCompositeDisposable.isDisposed()) {
+            mCompositeDisposable = new CompositeDisposable();
+        }
+        mCompositeDisposable.add(subscription);
+    }
+
+    @Override
+    public void unDisposable() {
+        if (mCompositeDisposable != null) {
+            mCompositeDisposable.dispose();
+        }
+    }
 
 }

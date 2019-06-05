@@ -1,6 +1,6 @@
 package cn.walkpast.raindropdemo.ac.contact;
 
-import cn.walkpast.raindrop.base.presenter.RaindropPresenter;
+import cn.walkpast.raindrop.base.presenter.IRaindropPresenter;
 import cn.walkpast.raindrop.base.view.RaindropView;
 import cn.walkpast.raindropdemo.common.CommonResponse;
 
@@ -28,7 +28,7 @@ public interface WeatherContact {
 
     }
 
-    interface presenter extends RaindropPresenter {
+    interface presenter extends IRaindropPresenter {
 
         void getSubmitResult();
     }

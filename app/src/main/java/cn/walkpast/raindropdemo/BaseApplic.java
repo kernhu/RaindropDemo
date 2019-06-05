@@ -25,6 +25,7 @@ public class BaseApplic extends Application {
                 .setConnectTimeout(12)
                 .setReadTimeout(12)
                 .setWriteTimeout(12)
+                .setRetryOnConnectionFailure(true)
                 .setLogTag("raindrop-dome-sos")
                 .setLogLevel(HttpLoggingInterceptor.Level.BODY)
                 .setLogPrintable(BuildConfig.DEBUG)

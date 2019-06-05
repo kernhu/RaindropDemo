@@ -21,9 +21,7 @@ public class NetWorkInterceptor implements Interceptor {
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
         Response response = chain.proceed(request);
-        //请求的地址
         response.request().url();
-        //最终重定向的地址
         request.url();
         return response;
     }

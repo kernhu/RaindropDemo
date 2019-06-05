@@ -1,6 +1,6 @@
 package cn.walkpast.raindropdemo.ac.service;
 
-import cn.walkpast.raindrop.retroft.RaindropFactoryImpl;
+import cn.walkpast.raindrop.retroft.RaindropRetrofitFactory;
 
 /**
  * @author: Kern Hu
@@ -11,7 +11,7 @@ import cn.walkpast.raindrop.retroft.RaindropFactoryImpl;
  * modify version name :
  * description: This's ...
  */
-public class WeatherApi extends RaindropFactoryImpl {
+public class WeatherApi extends RaindropRetrofitFactory {
 
 
     private static WeatherApi mWeatherApi = new WeatherApi("https://www.apiopen.top/");

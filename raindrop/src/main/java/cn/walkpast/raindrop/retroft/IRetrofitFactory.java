@@ -15,7 +15,7 @@ import retrofit2.Retrofit;
  * modify version name :
  * description: This's ...
  */
-public interface RaindropFactory {
+public interface IRetrofitFactory {
 
     Retrofit getRetrofit();
 

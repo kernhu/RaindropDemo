@@ -29,6 +29,11 @@ public class Config {
     public static long writeTimeout = 10;
 
     /**
+     * retry on connection when request failure
+     */
+    public static boolean retryOnConnectionFailure = true;
+
+    /**
      *
      */
     public static String sslCertificate = "";

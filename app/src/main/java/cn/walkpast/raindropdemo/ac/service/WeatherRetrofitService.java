@@ -15,6 +15,24 @@ import retrofit2.http.Query;
  */
 public interface WeatherRetrofitService {
 
+//    @POST("api/Activity/get_activities?")
+//    Observable<BaseModel<List<>>> getApi1(@Query("time") String requestType);
+
+//    @GET("api/Activity/get_activities?")
+//    Observable<BaseModel<List<>>> getApi1(@Query("time") String requestType);
+
+//    @FormUrlEncoded
+//    @POST("api/Activity/get_activities?")
+//    Observable<BaseModel<List<>>> getApi1(@Field("time") String requestType);
+
+//    @FormUrlEncoded
+//    @POST("api/Activity/get_activities?")
+//    Observable<BaseModel<List<>>> getApi1(@FieldMap HashMap<String, String> params);
+
+//    @Multipart
+//    @POST("api/Activity/get_activities?")
+//    Observable<BaseModel<List<>>> getApi1(@PartMap Map<String, RequestBody> map);
+
     @POST("weatherApi")
     Observable<CommonResponse> submit(@Query("city") String city);
 }

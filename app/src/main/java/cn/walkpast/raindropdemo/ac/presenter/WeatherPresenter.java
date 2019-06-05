@@ -3,7 +3,7 @@ package cn.walkpast.raindropdemo.ac.presenter;
 import android.text.TextUtils;
 
 import cn.walkpast.raindrop.common.ExceptionTags;
-import cn.walkpast.raindrop.base.presenter.RaindropPresenterImpl;
+import cn.walkpast.raindrop.base.presenter.RaindropPresenter;
 import cn.walkpast.raindrop.exception.ExceptionHelper;
 import cn.walkpast.raindropdemo.common.CommonResponse;
 import cn.walkpast.raindropdemo.ac.contact.WeatherContact;
@@ -22,7 +22,7 @@ import io.reactivex.schedulers.Schedulers;
  * modify version name :
  * description: This's ...
  */
-public class WeatherPresenter extends RaindropPresenterImpl<WeatherContact.view> implements WeatherContact.presenter {
+public class WeatherPresenter extends RaindropPresenter<WeatherContact.view> implements WeatherContact.presenter {
 
     public WeatherPresenter(WeatherContact.view view) {
         super(view);
